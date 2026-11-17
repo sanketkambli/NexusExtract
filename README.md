@@ -176,6 +176,7 @@ dotnet test tests/NexusExtract.UnitTests/NexusExtract.UnitTests.csproj
 ---
 
 ## 7. Architecture & Interview Guides
+* 📖 [**`docs/ENTERPRISE_ARCHITECT_AND_LEAD_INTERVIEW_ENCYCLOPEDIA.md`**](docs/ENTERPRISE_ARCHITECT_AND_LEAD_INTERVIEW_ENCYCLOPEDIA.md) — **Master Technical Encyclopedia**: Daily revision guide covering C#/.NET 10 CLR internals, React 19 Fiber architecture, SQL optimization, Kafka/PubSub/IBM MQ, GCP Cloud Run, Terraform IaC, OpenTelemetry, Gemini AI & RAG, system design patterns, paid vs open-source tools directory, and STAR behavioral scenarios.
 * [`docs/ARCHITECTURE_AND_INTERVIEW_GUIDE.md`](docs/ARCHITECTURE_AND_INTERVIEW_GUIDE.md) — Comprehensive technical architecture handbook & interview talking points.
 * [`docs/PHASE_2_ENTERPRISE_CLOUD_AND_OBSERVABILITY.md`](docs/PHASE_2_ENTERPRISE_CLOUD_AND_OBSERVABILITY.md) — Deep-dive on OpenTelemetry, DLQ, Terraform IaC, and CI/CD pipelines.
 * [`docs/PHASE_3_AI_SCHEMA_MAPPING_ASSISTANT.md`](docs/PHASE_3_AI_SCHEMA_MAPPING_ASSISTANT.md) — Deep-dive on Google Gemini 2.5, RAG grounding, and Human-in-the-Loop workflows.
