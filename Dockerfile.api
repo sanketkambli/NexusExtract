@@ -1,0 +1,36 @@
+# Stage 1: Build .NET 10 Solution
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+# Copy project files first for optimal layer caching
+COPY ["src/NexusExtract.Domain/NexusExtract.Domain.csproj", "NexusExtract.Domain/"]
+COPY ["src/NexusExtract.Adapters/NexusExtract.Adapters.csproj", "NexusExtract.Adapters/"]
+COPY ["src/NexusExtract.Application/NexusExtract.Application.csproj", "NexusExtract.Application/"]
+COPY ["src/NexusExtract.Infrastructure/NexusExtract.Infrastructure.csproj", "NexusExtract.Infrastructure/"]
+COPY ["src/NexusExtract.Api/NexusExtract.Api.csproj", "NexusExtract.Api/"]
+COPY ["Directory.Build.props", "./"]
+
+RUN dotnet restore "NexusExtract.Api/NexusExtract.Api.csproj"
+
+# Copy source code and build Release
+COPY src/ ./
+WORKDIR "/src/NexusExtract.Api"
+RUN dotnet build "NexusExtract.Api.csproj" -c Release -o /app/build
+
+# Stage 2: Publish
+FROM build AS publish
+RUN dotnet publish "NexusExtract.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Stage 3: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+WORKDIR /app
+
+# Non-root secure user
+USER $APP_UID
+
+EXPOSE 8080
+ENV ASPNETCORE_HTTP_PORTS=8080
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "NexusExtract.Api.dll"]

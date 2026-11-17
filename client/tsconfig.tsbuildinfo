@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/theme.ts","./src/vite-env.d.ts","./src/api/client.ts","./src/api/jobsapi.ts","./src/components/header.tsx","./src/components/metriccards.tsx","./src/pages/dashboardpage.tsx","./src/pages/diagnosticspage.tsx","./src/pages/sourcespage.tsx","./src/pages/triggerextractpage.tsx","./src/types/api.ts"],"version":"5.7.3"}
