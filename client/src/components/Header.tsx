@@ -15,6 +15,7 @@ import {
   HelpCircle,
   Database,
   Terminal,
+  Sparkles,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -121,6 +122,20 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onTabChange }) => {
             }}
           >
             Source Adapters
+          </Button>
+
+          <Button
+            startIcon={<Sparkles size={17} color="#a855f7" />}
+            variant={currentTab === 'schema-mapping' ? 'contained' : 'text'}
+            onClick={() => onTabChange('schema-mapping')}
+            sx={{
+              bgcolor: currentTab === 'schema-mapping' ? 'rgba(168, 85, 247, 0.15)' : 'transparent',
+              color: currentTab === 'schema-mapping' ? '#c084fc' : '#94a3b8',
+              border: currentTab === 'schema-mapping' ? '1px solid rgba(168, 85, 247, 0.35)' : '1px solid transparent',
+              '&:hover': { bgcolor: 'rgba(168, 85, 247, 0.1)' },
+            }}
+          >
+            AI Schema Assistant
           </Button>
         </Box>
 

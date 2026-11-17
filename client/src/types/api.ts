@@ -81,3 +81,63 @@ export interface ConnectionHealthResult {
   latency: string;
   metadata?: Record<string, string>;
 }
+
+// Phase 3: Gemini AI & RAG Schema Mapping
+export interface CanonicalFieldDefinition {
+  fieldName: string;
+  dataType: string;
+  isRequired: boolean;
+  description: string;
+  exampleValue: string;
+  knownSynonyms: string[];
+}
+
+export interface FieldMappingRule {
+  sourceColumn: string;
+  targetCanonicalField: string;
+  confidenceScore: number;
+  transformationRule: string;
+  aiRationale: string;
+  isUserOverridden?: boolean;
+}
+
+export interface AnalyzeSchemaRequest {
+  partnerName: string;
+  sourceColumns: string[];
+  sampleRows?: Record<string, string>[];
+  correlationId?: string;
+}
+
+export interface AnalyzeSchemaResponse {
+  sessionId: string;
+  partnerName: string;
+  correlationId: string;
+  suggestedMappings: FieldMappingRule[];
+  modelUsed: string;
+  promptTokens: number;
+  completionTokens: number;
+  estimatedCostUsd: number;
+  processingTimeMs: number;
+  ragContextSummary: string;
+}
+
+export interface ApproveSchemaRequest {
+  finalMappings: FieldMappingRule[];
+  approvedBy: string;
+}
+
+export interface SchemaMappingSession {
+  id: string;
+  partnerName: string;
+  correlationId: string;
+  mappings: FieldMappingRule[];
+  status: 'PendingReview' | 'Approved' | 'Rejected';
+  aiModelUsed: string;
+  promptTokens: number;
+  completionTokens: number;
+  estimatedCostUsd: number;
+  processingTimeMs: number;
+  createdAtUtc: string;
+  approvedAtUtc?: string | null;
+  approvedBy?: string | null;
+}

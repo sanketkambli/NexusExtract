@@ -1,7 +1,7 @@
-# NexusExtract Gateway (Phases 1 & 2 Completed)
-### Enterprise Multi-Source Data Ingestion, Streaming FileSync, Observability & Cloud-Ready Support Platform
+# NexusExtract Gateway (Phases 1, 2 & 3 Completed)
+### Enterprise Multi-Source Data Ingestion, Streaming FileSync, Observability & Gemini AI Schema Mapping Platform
 
-Built with **C# / .NET 10**, **React 19 + TypeScript**, **OpenTelemetry Distributed Tracing & Metrics**, **Apache Kafka & GCP Pub/Sub**, **Dapper + SQL Server**, **S3 / GCP Cloud Storage Streaming Sinks**, **Dead-Letter Queue (DLQ) & Message Replay**, **Terraform IaC**, and **Bitbucket Pipelines CI/CD**.
+Built with **C# / .NET 10**, **React 19 + TypeScript**, **Google Gemini 2.5 + RAG Schema Assistant**, **OpenTelemetry Distributed Tracing & Metrics**, **Apache Kafka & GCP Pub/Sub**, **Dapper + SQL Server**, **S3 / GCP Cloud Storage Streaming Sinks**, **Dead-Letter Queue (DLQ) & Message Replay**, **Terraform IaC**, and **Bitbucket Pipelines CI/CD**.
 
 ---
 
@@ -165,8 +165,17 @@ dotnet test tests/NexusExtract.UnitTests/NexusExtract.UnitTests.csproj
 
 ---
 
-## 6. Phase 3 Roadmap: Gemini AI Schema Mapping Assistant
-* Google Gemini 2.5 / Pro Vertex AI integration.
-* RAG over synthetic partner schemas and internal product catalogues.
-* Automatic column matching, transformation rules, and confidence scoring.
-* Human approval workflow in React UI before saving canonical schema mappings.
+## 6. Phase 3: Gemini AI Schema Mapping Assistant (Completed)
+* **Google Gemini 2.5 Structured Outputs:** Native JSON schema constraints guaranteeing typed mapping outputs.
+* **Enterprise RAG Knowledge Base:** Grounded in internal product & financial canonical specifications (`v4.2`) and historical supplier synonym mappings.
+* **Confidence Scoring & Rationale:** Every field match includes confidence score ($0.0 - 1.0$), transformation rules (`ParseCurrency`, `Trim`, `ToInteger`), and evidence explanations.
+* **Human-in-the-Loop (HITL) Governance:** Interactive React 19 UI with operator override dropdowns and one-click canonical commitment.
+* **AI Observability & Cost Accounting:** Tracks prompt/completion tokens, latency, and real-time USD costs per inference session.
+* **100% Offline Demo Resilience:** Intelligent semantic fallback engine ensures the assistant runs seamlessly without an external API key or network access.
+
+---
+
+## 7. Architecture & Interview Guides
+* [`docs/ARCHITECTURE_AND_INTERVIEW_GUIDE.md`](docs/ARCHITECTURE_AND_INTERVIEW_GUIDE.md) — Comprehensive technical architecture handbook & interview talking points.
+* [`docs/PHASE_2_ENTERPRISE_CLOUD_AND_OBSERVABILITY.md`](docs/PHASE_2_ENTERPRISE_CLOUD_AND_OBSERVABILITY.md) — Deep-dive on OpenTelemetry, DLQ, Terraform IaC, and CI/CD pipelines.
+* [`docs/PHASE_3_AI_SCHEMA_MAPPING_ASSISTANT.md`](docs/PHASE_3_AI_SCHEMA_MAPPING_ASSISTANT.md) — Deep-dive on Google Gemini 2.5, RAG grounding, and Human-in-the-Loop workflows.

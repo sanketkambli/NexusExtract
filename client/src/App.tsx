@@ -7,10 +7,11 @@ import { DashboardPage } from './pages/DashboardPage';
 import { TriggerExtractPage } from './pages/TriggerExtractPage';
 import { DiagnosticsPage } from './pages/DiagnosticsPage';
 import { SourcesPage } from './pages/SourcesPage';
+import { SchemaMappingPage } from './pages/SchemaMappingPage';
 import { useRecentJobs, useSources } from './api/jobsApi';
 
 export const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<'dashboard' | 'trigger' | 'diagnostics' | 'sources'>('dashboard');
+  const [currentTab, setCurrentTab] = useState<'dashboard' | 'trigger' | 'diagnostics' | 'sources' | 'schema-mapping'>('dashboard');
   const [selectedJobIdForDiagnostics, setSelectedJobIdForDiagnostics] = useState<string | null>(null);
 
   const { data: jobs = [], isLoading: isJobsLoading } = useRecentJobs();
@@ -51,6 +52,8 @@ export const App: React.FC = () => {
           )}
 
           {currentTab === 'sources' && <SourcesPage />}
+
+          {currentTab === 'schema-mapping' && <SchemaMappingPage />}
         </Container>
       </Box>
     </ThemeProvider>

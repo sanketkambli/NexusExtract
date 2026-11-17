@@ -10,11 +10,13 @@ using NexusExtract.Adapters.GoTrade;
 using NexusExtract.Adapters.RestApi;
 using NexusExtract.Adapters.SftpDrop;
 using NexusExtract.Application.Features.Extractions;
+using NexusExtract.Application.Features.SchemaMapping;
 using NexusExtract.Application.Features.Sources;
 using NexusExtract.Application.Interfaces;
 using NexusExtract.Application.Services;
 using NexusExtract.Domain.Interfaces;
 using NexusExtract.Domain.Observability;
+using NexusExtract.Infrastructure.Ai;
 using NexusExtract.Infrastructure.Messaging;
 using NexusExtract.Infrastructure.Persistence;
 using NexusExtract.Infrastructure.Sinks;
@@ -78,8 +80,13 @@ public static class DependencyInjection
         services.AddSingleton<IDiagnosticService, DiagnosticService>();
         services.AddScoped<ExtractionService>();
         services.AddScoped<SourceManagementService>();
+        services.AddScoped<SchemaMappingService>();
 
-        // 6. OpenTelemetry Distributed Tracing & Metrics Setup
+        // 6. AI Schema Assistant & RAG Services
+        services.AddSingleton<IRagKnowledgeBase, RagKnowledgeBase>();
+        services.AddHttpClient<IAiSchemaMappingService, GeminiAiService>();
+
+        // 7. OpenTelemetry Distributed Tracing & Metrics Setup
         services.AddOpenTelemetry()
             .ConfigureResource(resource => resource
                 .AddService(NexusObservability.ServiceName, serviceVersion: NexusObservability.ServiceVersion))
